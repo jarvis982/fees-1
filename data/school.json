@@ -1,0 +1,25 @@
+{
+  "name": "Lakes International School",
+  "shortName": "LIS",
+  "portalName": "S.P (School Portal)",
+  "tagline": "Discover a World of Learning",
+  "location": "Bhimtal, Nainital, Uttarakhand – 263136",
+  "affiliation": "CBSE Affiliation Number: 3530124",
+  "schoolCode": "81358",
+  "founded": "2001",
+  "academicYear": "2025-2026",
+  "phone": "+91 5942 247000",
+  "helpline": "+91 94120 89234",
+  "email": "fees@lisbhimtal.org",
+  "website": "https://www.lisbhimtal.org/",
+  "upiId": "lisbhimtal@upi",
+  "merchantName": "Lakes International School",
+  "officeTimings": "Monday – Saturday: 8:30 AM – 3:30 PM",
+  "bankDetails": {
+    "bankName": "State Bank of India (SBI)",
+    "accountName": "Lakes International School Fee Collection",
+    "accountNumber": "3892010004928",
+    "ifscCode": "SBIN0000734",
+    "branch": "Bhimtal Main Branch, Nainital"
+  }
+}

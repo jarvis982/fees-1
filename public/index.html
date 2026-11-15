@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lakes International School | Online Fee Payment Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Toast Notifications Container -->
+  <div id="toastContainer"></div>
+
+  <!-- Confetti Celebration Container -->
+  <div id="confettiContainer" class="confetti-container"></div>
+
+  <!-- ==============================================
+       HEADER / NAVIGATION
+       ============================================== -->
+  <header>
+    <div class="brand-wrapper">
+      <div class="logo-badge">S.P</div>
+      <div>
+        <a class="logo-title" href="#home">LAKES<span>.</span></a>
+        <div class="logo-sub">International School, Bhimtal</div>
+      </div>
+    </div>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+
+    <nav id="navigation">
+      <a href="#home" onclick="closeNav()">Home</a>
+      <a href="#about" onclick="closeNav()">About</a>
+      <a href="#facilities" onclick="closeNav()">Facilities</a>
+      <a href="#gallery" onclick="closeNav()">Gallery</a>
+      <a href="#faq" onclick="closeNav()">Fee FAQs</a>
+      <a href="javascript:void(0)" onclick="openReceiptLookupModal(); closeNav()">🔍 Receipt Search</a>
+      <a href="/admin.html" onclick="closeNav()">Admin Portal</a>
+      <a class="btn-nav-pay" href="#fees" onclick="closeNav()">💳 Pay Fees</a>
+    </nav>
+  </header>
+
+  <!-- ==============================================
+       STEP 1 - HERO BANNER (OPEN SCHOOL WEBSITE)
+       ============================================== -->
+  <div class="hero" id="home">
+    <div class="hero-content">
+      <div class="eyebrow">BHIMTAL • NAINITAL • UTTARAKHAND (CBSE 3530124)</div>
+      <h1>Lakes International <span>School</span></h1>
+      <p>Welcome to Lakes International School (LIS). A place where knowledge, creativity, discipline, and confidence come together to shape tomorrow's leaders. Pay school fees quickly, securely, and seamlessly online.</p>
+      <div class="hero-actions">
+        <!-- Prominent Pay Fees Button as requested in Step 1 & 2 -->
+        <a class="btn" href="#fees">
+          <span>PAY FEES NOW</span> →
+        </a>
+        <a class="btn btn-outline" href="#about">EXPLORE OUR SCHOOL</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       ABOUT SECTION
+       ============================================== -->
+  <section id="about">
+    <div class="intro">
+      <div>
+        <div class="section-heading" style="text-align: left; margin-bottom: 18px;">
+          <div class="eyebrow">WELCOME TO LIS</div>
+          <h2>Education Beyond Classrooms</h2>
+        </div>
+        <p>Lakes International School is nestled in scenic Bhimtal, Nainital, Uttarakhand. Founded in 2001 and affiliated with CBSE, our school provides an environment committed to academic excellence, digital literacy, and all-round character development.</p>
+        
+        <div class="facts">
+          <div class="fact">
+            <strong>2001</strong>
+            <span>Year Founded</span>
+          </div>
+          <div class="fact">
+            <strong>CBSE</strong>
+            <span>Affiliation (3530124)</span>
+          </div>
+          <div class="fact">
+            <strong>2025-26</strong>
+            <span>Academic Session</span>
+          </div>
+        </div>
+      </div>
+      <img src="https://d3bat55ebwjhsf.cloudfront.net/schools/gallery/user_generic_school_user/21_zeH66fu.jpg" alt="Lakes International School Campus">
+    </div>
+  </section>
+
+  <!-- ==============================================
+       FACILITIES SECTION
+       ============================================== -->
+  <section id="facilities">
+    <div class="section-heading">
+      <div class="eyebrow">LEARN • EXPLORE • ACHIEVE</div>
+      <h2>Campus Facilities & Learning</h2>
+      <p>Discover the enriching spaces and activities at Lakes International School.</p>
+    </div>
+    <div class="facilities-grid">
+      <div class="facility"><div class="symbol">📚</div><h3>Modern Library</h3><p>A quiet repository of thousands of books, journals, and digital research resources.</p></div>
+      <div class="facility"><div class="symbol">🔬</div><h3>Science Laboratories</h3><p>Fully equipped Physics, Chemistry, and Biology labs fostering experiential learning.</p></div>
+      <div class="facility"><div class="symbol">💻</div><h3>Computer & STEM Lab</h3><p>State-of-the-art workstations empowering students in coding and modern technology.</p></div>
+      <div class="facility"><div class="symbol">⚽</div><h3>Sports & Fitness</h3><p>Spacious grounds for football, cricket, basketball, and athletic training.</p></div>
+      <div class="facility"><div class="symbol">🎨</div><h3>Creative Arts & Music</h3><p>Studios dedicated to painting, classical dance, instrumentation, and vocal training.</p></div>
+      <div class="facility"><div class="symbol">🏫</div><h3>Smart Classrooms</h3><p>Interactive digital boards making daily lessons engaging and memorable.</p></div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       GALLERY
+       ============================================== -->
+  <section class="gallery" id="gallery">
+    <div class="section-heading">
+      <div class="eyebrow">A GLIMPSE OF LIS</div>
+      <h2>Our Campus Gallery</h2>
+      <p>Take a tour of our scenic Himalayan campus.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <img src="https://d3bat55ebwjhsf.cloudfront.net/schools/cover/5586/user_root_user%40ezy.com/2018-10-01.jpeg" alt="Campus View">
+        <span>Main Academic Block</span>
+      </div>
+      <div class="gallery-card">
+        <img src="https://d3bat55ebwjhsf.cloudfront.net/schools/gallery/user_generic_school_user/21_zeH66fu.jpg" alt="School Environment">
+        <span>Lush Green Campus</span>
+      </div>
+      <div class="gallery-card">
+        <img src="https://d3bat55ebwjhsf.cloudfront.net/schools/gallery/user_generic_school_user/22_W5582Gn.jpg" alt="Facilities">
+        <span>Activity Hall</span>
+      </div>
+      <div class="gallery-card">
+        <img src="https://d3bat55ebwjhsf.cloudfront.net/schools/gallery/user_generic_school_user/23_qt9LK7V.jpg" alt="Student Life">
+        <span>Sports & Athletics</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       THE CORE FEE PAYMENT SYSTEM FLOWCHART STEPS
+       ============================================== -->
+  <section class="fees-section" id="fees">
+    <div class="section-heading">
+      <div class="eyebrow" style="color: #f7d288;">STUDENT PORTAL (S.P)</div>
+      <h2>Online Fee Payment System</h2>
+      <p>Follow the simple step-by-step process to verify details, select pending months, and scan to pay.</p>
+    </div>
+
+    <div class="fee-container">
+      
+      <!-- Stepper Wizard -->
+      <div class="step-wizard">
+        <div class="wizard-item active" id="wizardStep1">
+          <div class="wizard-circle">1</div>
+          <div class="wizard-label">Student Details</div>
+        </div>
+        <div class="wizard-item" id="wizardStep2">
+          <div class="wizard-circle">2</div>
+          <div class="wizard-label">Pending Months</div>
+        </div>
+        <div class="wizard-item" id="wizardStep3">
+          <div class="wizard-circle">3</div>
+          <div class="wizard-label">Scan & Pay</div>
+        </div>
+        <div class="wizard-item" id="wizardStep4">
+          <div class="wizard-circle">4</div>
+          <div class="wizard-label">Receipt</div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           STEP 3 & 4: ENTER STUDENT DETAILS
+           Addmo: (Admission No.) & DOB: (Date of Birth)
+           ========================================== -->
+      <div class="fee-card" id="stepVerification">
+        <div class="card-header">
+          <span class="portal-badge">S.P Verification</span>
+          <h3>Step 1: Enter Student Details</h3>
+          <p>Please enter the student's Admission Number and Date of Birth to fetch pending fees.</p>
+        </div>
+
+        <div id="verificationAlert" class="alert-box alert-error"></div>
+
+        <form id="studentAuthForm" onsubmit="submitStudentDetails(event)">
+          <div class="form-group">
+            <label for="inputAdmission">Admission No. (Addmo) *</label>
+            <input type="text" id="inputAdmission" placeholder="e.g. LIS2025001" required autocomplete="off">
+            <div class="form-help">Official student admission number (e.g. LIS2025001 to LIS2025012)</div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputDob">Date of Birth (DOB) *</label>
+            <input type="date" id="inputDob" required>
+            <div class="form-help">Enter student's date of birth matching official school records</div>
+          </div>
+
+          <button type="submit" id="btnVerifyStudent" class="btn full" style="margin-top: 14px;">
+            SUBMIT & CHECK FEES →
+          </button>
+        </form>
+
+        <div style="margin-top: 20px; display: flex; justify-content: center; align-items: center; border-top: 1px dashed var(--border-color); padding-top: 16px;">
+          <button type="button" class="btn btn-outline btn-sm" style="color: var(--blue); border-color: var(--blue);" onclick="openReceiptLookupModal()">
+            🔍 Search / Reprint Past Receipt
+          </button>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           STEP 5: REDIRECT AGAIN - WHICH MONTH FEES PENDING?
+           ========================================== -->
+      <div class="fee-card" id="stepMonths" style="display: none;">
+        <div class="card-header">
+          <span class="portal-badge" style="background: #e6f7ef; color: var(--green);">Student Verified ✓</span>
+          <h3>Step 2: Which month Fees Pending?</h3>
+          <p>Review the student profile and select the pending fee month(s) you wish to pay.</p>
+        </div>
+
+        <!-- Student summary badge -->
+        <div class="student-summary">
+          <div class="student-row">
+            <span>Student Name:</span>
+            <strong id="summaryStudentName">-</strong>
+          </div>
+          <div class="student-row">
+            <span>Admission No:</span>
+            <strong id="summaryAdmissionNo">-</strong>
+          </div>
+          <div class="student-row">
+            <span>Class & Section:</span>
+            <strong id="summaryClass">-</strong>
+          </div>
+          <div class="student-row">
+            <span>Parent / Guardian:</span>
+            <strong id="summaryParent">-</strong>
+          </div>
+          <div class="student-row">
+            <span>Monthly Fee Rate:</span>
+            <strong id="summaryMonthlyFee" style="color: var(--green);">-</strong>
+          </div>
+          <div class="student-row">
+            <span>Academic Session:</span>
+            <strong>2025–2026</strong>
+          </div>
+        </div>
+
+        <!-- Tab Bar: Pending Dues vs Past Payment Receipts -->
+        <div class="tabs-header">
+          <button type="button" class="tab-btn active" id="tabPendingMonthsBtn" onclick="switchStudentTab('pending')">
+            📅 Pending Dues to Pay
+          </button>
+          <button type="button" class="tab-btn" id="tabPastReceiptsBtn" onclick="switchStudentTab('history')">
+            📜 Past Payment Receipts (<span id="pastReceiptsCount">0</span>)
+          </button>
+        </div>
+
+        <!-- Tab Content 1: Pending Months -->
+        <div id="tabContentPending">
+          <div class="month-selector-title">
+            <h4>Select Pending Fee Month(s):</h4>
+            <button type="button" class="btn btn-navy btn-sm" onclick="selectAllPendingMonths()">
+              Select All Pending
+            </button>
+          </div>
+
+          <!-- Quarter Quick Filters -->
+          <div class="quarter-pills-wrap">
+            <span style="font-size: 11px; color: var(--text-muted); align-self: center; font-weight: 600;">Quick Filter:</span>
+            <button type="button" class="quarter-pill" onclick="selectQuarter('Q1')">Q1 (Apr–Jun)</button>
+            <button type="button" class="quarter-pill" onclick="selectQuarter('Q2')">Q2 (Jul–Sep)</button>
+            <button type="button" class="quarter-pill" onclick="selectQuarter('Q3')">Q3 (Oct–Dec)</button>
+            <button type="button" class="quarter-pill" onclick="selectQuarter('Q4')">Q4 (Jan–Mar)</button>
+            <button type="button" class="quarter-pill" onclick="clearMonthSelection()">✕ Clear</button>
+          </div>
+
+          <div class="month-grid" id="pendingMonthsContainer">
+            <!-- Dynamically populated -->
+          </div>
+
+          <!-- Fee Breakdown Estimate -->
+          <div class="fee-breakdown-box" id="feeBreakdownBox">
+            <div style="font-weight: 700; color: var(--navy); margin-bottom: 6px;">Fee Component Structure (Per Month):</div>
+            <div class="fee-breakdown-row"><span>Tuition & Academic Fee:</span> <strong id="breakdownTuition">-</strong></div>
+            <div class="fee-breakdown-row"><span>Computer & Digital Lab:</span> <strong id="breakdownLab">-</strong></div>
+            <div class="fee-breakdown-row"><span>Sports & Extracurricular:</span> <strong id="breakdownSports">-</strong></div>
+          </div>
+
+          <!-- Total Calculation Box -->
+          <div class="amount-callout">
+            <div>
+              <div class="label">Total Payable Amount</div>
+              <div class="months-count" id="selectedMonthsCount">0 months selected</div>
+            </div>
+            <div class="value" id="payableTotalAmount">₹0</div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 20px;">
+            <button type="button" class="btn btn-outline" style="color: var(--navy); border-color: var(--navy); flex: 1;" onclick="setWizardStep(1); showFeeStep('stepVerification')">
+              ← Back
+            </button>
+            <button type="button" id="btnProceedToScanner" class="btn" style="flex: 2;" onclick="proceedToScanner()">
+              PROCEED TO PAYMENT SCANNER →
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab Content 2: Past Receipts History -->
+        <div id="tabContentHistory" style="display: none;">
+          <h4 style="color: var(--navy); margin-bottom: 12px;">Previous Payment Receipts for this Student</h4>
+          <div id="studentReceiptsHistoryList">
+            <!-- Populated dynamically -->
+          </div>
+          <div style="margin-top: 20px;">
+            <button type="button" class="btn btn-outline" style="color: var(--navy); border-color: var(--navy);" onclick="switchStudentTab('pending')">
+              ← Back to Pay Dues
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==========================================
+           STEP 6: SCANNER - SCAN IT AND PAY THE FEES
+           ========================================== -->
+      <div class="fee-card" id="stepScanner" style="display: none;">
+        <div class="card-header">
+          <span class="portal-badge">Payment Gateway</span>
+          <h3>Step 3: Scan & Pay School Fees</h3>
+          <p>Scan using any UPI App (Google Pay, PhonePe, Paytm, BHIM) or use direct bank transfer.</p>
+        </div>
+
+        <!-- Payment Mode Tabs -->
+        <div class="tabs-header" style="justify-content: center;">
+          <button type="button" class="tab-btn active" id="tabUpiScannerBtn" onclick="switchPaymentModeTab('upi')">
+            📱 UPI QR Scanner
+          </button>
+          <button type="button" class="tab-btn" id="tabBankDetailsBtn" onclick="switchPaymentModeTab('bank')">
+            🏦 Direct Bank Transfer (NEFT/IMPS)
+          </button>
+        </div>
+
+        <!-- UPI Mode Container -->
+        <div id="paymentModeUpi" class="scanner-card">
+          <!-- Live Countdown Timer -->
+          <div class="scanner-timer">
+            ⏱️ QR Code Active — Expires in: <span id="scannerTimerDisplay">05:00</span>
+          </div>
+
+          <!-- Dynamic Scanner QR Code -->
+          <div class="qr-frame">
+            <img id="scannerQrImage" src="" alt="UPI Fee Payment QR Scanner">
+          </div>
+
+          <div class="amount-callout" style="max-width: 420px; margin: 12px auto; text-align: left;">
+            <div>
+              <div class="label">Amount to Pay</div>
+              <div class="months-count" id="scannerSelectedMonths">-</div>
+            </div>
+            <div class="value" id="scannerPayableAmount">₹0</div>
+          </div>
+
+          <div class="upi-info">
+            <div>Beneficiary: <strong>Lakes International School</strong></div>
+            <div>Student: <strong id="scannerStudentName">-</strong> (<span id="scannerAdmissionNo">-</span>)</div>
+            <div class="upi-id-pill">
+              <span id="scannerUpiId">lisbhimtal@upi</span>
+              <button class="btn-copy" id="btnCopyUpi" onclick="copyUpiId()">Copy UPI</button>
+            </div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+              Accepted on all UPI Apps:
+            </div>
+            <div class="apps-icons">
+              <span class="app-pill">GPay</span>
+              <span class="app-pill">PhonePe</span>
+              <span class="app-pill">Paytm</span>
+              <span class="app-pill">BHIM UPI</span>
+            </div>
+
+            <!-- Direct mobile link if paying from same phone -->
+            <div style="margin-top: 10px;">
+              <a id="scannerMobileUpiLink" href="#" class="btn btn-navy btn-sm" style="display: inline-block;">
+                📱 Open Directly in UPI App (Mobile)
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bank Details Mode Container -->
+        <div id="paymentModeBank" style="display: none;">
+          <div class="bank-details-card">
+            <div style="font-weight: 700; color: var(--navy); margin-bottom: 8px;">Official School Bank Account Details:</div>
+            <div class="bank-row"><span>Account Name:</span> <strong>Lakes International School Fee Collection</strong></div>
+            <div class="bank-row"><span>Bank Name:</span> <strong>State Bank of India (SBI)</strong></div>
+            <div class="bank-row"><span>Account Number:</span> <strong>3892010004928</strong> <button class="btn-copy" onclick="copyText('3892010004928', 'Account Number')">Copy</button></div>
+            <div class="bank-row"><span>IFSC Code:</span> <strong>SBIN0000734</strong> <button class="btn-copy" onclick="copyText('SBIN0000734', 'IFSC Code')">Copy</button></div>
+            <div class="bank-row"><span>Branch:</span> <strong>Bhimtal Main Branch, Nainital</strong></div>
+          </div>
+        </div>
+
+        <!-- Transaction Reference & Proof Upload -->
+        <div class="payment-proof-box">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 4px;">
+            Transaction / UTR Reference No. (Optional):
+          </label>
+          <input type="text" id="inputTransactionRef" placeholder="e.g. 432198765432 or leave blank for auto-ref" style="width: 100%; padding: 10px; border: 1.5px solid var(--border-color); border-radius: 6px; font-size: 13px; margin-bottom: 10px;">
+
+          <label style="display: block; font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 4px;">
+            Payment Screenshot / Proof (Optional, JPG/PNG, max 5MB):
+          </label>
+          <input type="file" id="inputProofScreenshot" accept="image/jpeg,image/png,image/webp" style="font-size: 12px;">
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 20px;">
+          <button type="button" class="btn btn-outline" style="color: var(--navy); border-color: var(--navy); flex: 1;" onclick="setWizardStep(2); showFeeStep('stepMonths')">
+            ← Change Months
+          </button>
+          <button type="button" id="btnConfirmPayment" class="btn btn-green" style="flex: 2;" onclick="confirmPaymentSubmission()">
+            ✓ I HAVE PAID — GENERATE RECEIPT
+          </button>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           STEP 7: OFFICIAL CBSE FEE RECEIPT
+           ========================================== -->
+      <div class="fee-card" id="stepReceipt" style="display: none;">
+        <div class="receipt-wrapper" id="receiptCard">
+          <div class="receipt-header">
+            <div class="logo-badge" style="display: inline-block; margin-bottom: 6px;">L.I.S BHIMTAL</div>
+            <h2>LAKES INTERNATIONAL SCHOOL</h2>
+            <p>Bhimtal, Nainital, Uttarakhand – 263136 | CBSE Affiliation No: 3530124 | School Code: 81358</p>
+            <div class="receipt-badge">FEE PAYMENT RECEIPT — SUCCESS</div>
+          </div>
+
+          <div class="receipt-grid">
+            <div>
+              <p><strong>Receipt No:</strong> <span id="receiptNo">-</span></p>
+              <p><strong>Date & Time:</strong> <span id="receiptDate">-</span></p>
+              <p><strong>Payment Method:</strong> <span id="receiptMethod">UPI Scanner</span></p>
+              <p><strong>Transaction Ref:</strong> <span id="receiptRef">-</span></p>
+              <p><strong>Academic Session:</strong> <span>2025–2026</span></p>
+            </div>
+            <div>
+              <p><strong>Student Name:</strong> <span id="receiptStudentName">-</span></p>
+              <p><strong>Admission No:</strong> <span id="receiptAdmission">-</span></p>
+              <p><strong>Class & Section:</strong> <span id="receiptClass">-</span></p>
+              <p><strong>Parent / Guardian:</strong> <span id="receiptParent">-</span></p>
+              <p><strong>Status:</strong> <span style="color: var(--green); font-weight: 700;">PAID & VERIFIED</span></p>
+            </div>
+          </div>
+
+          <table class="receipt-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Fee Components</th>
+                <th style="text-align: right;">Amount (INR)</th>
+              </tr>
+            </thead>
+            <tbody id="receiptItemsBody">
+              <!-- Dynamically populated -->
+            </tbody>
+            <tfoot>
+              <tr class="total-row">
+                <td colspan="2">Total Fee Paid (INR)</td>
+                <td style="text-align: right;" id="receiptTotalAmount">₹0</td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <div class="receipt-footer-stamp">
+            <div class="receipt-qr-box">
+              <img id="receiptVerificationQrImg" src="" alt="Receipt Verification QR">
+              <div style="font-size: 11px; color: var(--text-muted); max-width: 280px;">
+                Scan QR to authenticate receipt with Lakes International School digital registry.
+              </div>
+            </div>
+            <div class="seal-box">
+              OFFICIALLY VERIFIED<br>
+              L.I.S ACCOUNTS OFFICE<br>
+              <small>BHIMTAL (NAINITAL)</small>
+            </div>
+          </div>
+
+          <div class="receipt-tax-note">
+            📋 Eligible for Income Tax Tuition Fee Exemption under Section 80C of the Income Tax Act, 1961.
+          </div>
+        </div>
+
+        <div class="no-print" style="display: flex; gap: 14px; margin-top: 24px; flex-wrap: wrap;">
+          <button type="button" class="btn btn-navy" style="flex: 1;" onclick="printReceipt()">
+            🖨️ Print / Save as PDF
+          </button>
+          <button type="button" class="btn btn-whatsapp" style="flex: 1;" onclick="shareReceiptWhatsApp()">
+            📲 Share on WhatsApp
+          </button>
+          <button type="button" class="btn" style="flex: 1;" onclick="startAnotherPayment()">
+            Pay Another Student's Fees
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==============================================
+       FEE POLICY & FAQS SECTION
+       ============================================== -->
+  <section class="faq-section" id="faq">
+    <div class="section-heading">
+      <div class="eyebrow">HELP & GUIDELINES</div>
+      <h2>Frequently Asked Questions (Fee Portal)</h2>
+      <p>Clear answers to common questions about online fee payment, tax exemption, and receipts.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>1. Can I use this fee receipt for Income Tax (Section 80C) deduction?</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! Under Section 80C of the Income Tax Act, 1961, tuition fee paid for full-time education of children is eligible for tax exemption (up to ₹1.5 Lakh per annum). Every official receipt generated through this portal clearly breaks down Tuition Fee and displays our official CBSE Affiliation Number (3530124) and Digital Seal.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>2. Which UPI Apps and payment modes are supported?</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Our dynamic BharatQR scanner is compliant with NPCI standards and accepts all major UPI applications including Google Pay, PhonePe, Paytm, BHIM, Cred, and mobile banking UPI apps. Parents can also choose Direct Bank Transfer (SBI NEFT/RTGS/IMPS).
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>3. What if money was debited from my bank but receipt wasn't generated?</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Don't worry! Your money is safe. You can simply use our "🔍 Receipt Search" tool at the top of the portal using your Admission Number or transaction UTR. Alternatively, reach our Accounts Office directly at fees@lisbhimtal.org or call +91 5942 247000.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>4. Can parents pay quarterly or for multiple months together?</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes. In Step 2, you can select individual months or use our one-click Quarter quick-filters (Q1, Q2, Q3, Q4, or Select All Pending). The total amount dynamically updates in real time.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>5. How can I reprint a lost fee receipt?</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          You can reprint any past receipt anytime! Simply enter your student details (Admission No + DOB) to access the "Past Payment Receipts" tab, or click "Receipt Search" in the top menu and enter your Receipt Number.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       RECEIPT SEARCH / VERIFICATION MODAL
+       ============================================== -->
+  <div class="modal-overlay" id="receiptLookupModal">
+    <div class="modal-content" style="max-width: 580px;">
+      <button class="modal-close" onclick="closeReceiptLookupModal()">✕</button>
+      <h3 style="color: var(--navy); margin-bottom: 6px;">🔍 Search & Reprint Receipt</h3>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">
+        Enter your official Receipt Number (e.g., <code>LIS-2026-272789</code>) to view, verify, and reprint your receipt.
+      </p>
+
+      <form onsubmit="searchReceiptById(event)">
+        <div class="form-group">
+          <label for="inputSearchReceiptId">Receipt Number *</label>
+          <input type="text" id="inputSearchReceiptId" placeholder="e.g. LIS-2026-272789" required autocomplete="off">
+        </div>
+        <button type="submit" id="btnSearchReceipt" class="btn full">
+          SEARCH RECEIPT →
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       FOOTER
+       ============================================== -->
+  <footer>
+    <h2>LAKES INTERNATIONAL SCHOOL</h2>
+    <p>Bhimtal, Nainital, Uttarakhand – 263136</p>
+    <p>CBSE Affiliation Number: 3530124 | School Code: 81358 | Academic Session: 2025–2026</p>
+    <p style="margin-top: 15px; color: #7f99ab;">
+      © 2026 Lakes International School Fee Portal (S.P). All Rights Reserved.
+    </p>
+    <p style="margin-top: 8px;">
+      <a href="https://www.lisbhimtal.org/" target="_blank" rel="noopener">Official School Website</a> |
+      <a href="/admin.html">Admin Dashboard</a> |
+      <a href="tel:+915942247000">Helpline: +91 5942 247000</a>
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

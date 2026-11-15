@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Lakes International School Fee Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+    .kpi-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--card-shadow);
+      border-left: 5px solid var(--navy);
+    }
+    .kpi-card.green { border-left-color: var(--green); }
+    .kpi-card.gold { border-left-color: var(--gold); }
+    .kpi-card.red { border-left-color: var(--red); }
+    .kpi-card .kpi-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    .kpi-card .kpi-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-top: 4px;
+    }
+    .kpi-card .kpi-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .admin-card {
+      background: white;
+      border-radius: 14px;
+      padding: 26px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 25px;
+    }
+    .badge-pending {
+      background: #fed7aa;
+      color: #9a3412;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-clear {
+      background: #dcfce7;
+      color: #166534;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-bar input, .filter-bar select {
+      padding: 8px 12px;
+      border: 1.5px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+    }
+    .filter-bar input { flex: 1; min-width: 220px; }
+    @media (max-width: 900px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 550px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body style="background: #f1f5f9;">
+
+  <div id="toastContainer"></div>
+
+  <header>
+    <div class="brand-wrapper">
+      <div class="logo-badge">ADMIN</div>
+      <div>
+        <a class="logo-title" href="/">LAKES<span>.</span></a>
+        <div class="logo-sub">Official Fee Management & Audit Portal</div>
+      </div>
+    </div>
+    <nav>
+      <a href="/">← Back to School Website</a>
+      <a href="/#fees" class="btn-nav-pay">Student Fee Portal</a>
+      <button class="btn btn-outline btn-sm" id="btnAdminLogout" style="color: var(--navy); border-color: var(--navy); display: none;" onclick="adminLogout()">🔒 Logout</button>
+    </nav>
+  </header>
+
+  <!-- Admin PIN Lock Screen -->
+  <div id="adminLockScreen" style="max-width: 440px; margin: 80px auto; background: white; padding: 36px; border-radius: 16px; box-shadow: var(--card-shadow); text-align: center;">
+    <div style="font-size: 40px; margin-bottom: 10px;">🔐</div>
+    <h2 style="color: var(--navy); margin-bottom: 6px;">School Administration</h2>
+    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+      Please enter the administrator authorization PIN to access fee records and ledger audits.
+    </p>
+
+    <form onsubmit="verifyAdminPin(event)">
+      <div class="form-group">
+        <label for="adminPinInput">Admin PIN Code</label>
+        <input type="password" id="adminPinInput" placeholder="Enter PIN (Default: 1234)" style="text-align: center; font-size: 18px; letter-spacing: 4px;" required autofocus>
+        <div class="form-help">Default Demo PIN: <strong>1234</strong></div>
+      </div>
+      <button type="submit" class="btn full" style="margin-top: 12px;">UNLOCK DASHBOARD →</button>
+    </form>
+  </div>
+
+  <div class="admin-container" id="adminDashboardContent" style="display: none;">
+
+    <!-- KPI Summary Cards -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-title">Total Students Enrolled</div>
+        <div class="kpi-value" id="kpiTotalStudents">-</div>
+        <div class="kpi-sub" id="kpiStudentsSub">Classes IV – XI</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-title">Total Fees Collected</div>
+        <div class="kpi-value" id="kpiTotalCollected" style="color: var(--green);">-</div>
+        <div class="kpi-sub" id="kpiPaymentsCountSub">0 verified payments</div>
+      </div>
+      <div class="kpi-card red">
+        <div class="kpi-title">Outstanding Pending Dues</div>
+        <div class="kpi-value" id="kpiTotalPending" style="color: var(--red);">-</div>
+        <div class="kpi-sub" id="kpiPendingCountSub">0 students with dues</div>
+      </div>
+      <div class="kpi-card gold">
+        <div class="kpi-title">Collection Rate</div>
+        <div class="kpi-value" id="kpiCollectionRate" style="color: #b45309;">-%</div>
+        <div class="kpi-sub" id="kpiClearedSub">0 students cleared</div>
+      </div>
+    </div>
+
+    <!-- Student Records Card -->
+    <div class="admin-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 18px;">
+        <div>
+          <h2 style="color: var(--navy); font-size: 20px;">Student Fee Records</h2>
+          <p style="font-size: 13px; color: var(--text-muted);">
+            Lakes International School, Bhimtal (CBSE Affiliation: 3530124 | Code: 81358)
+          </p>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn btn-navy btn-sm" onclick="openAddStudentModal()">
+            ➕ Add Student
+          </button>
+          <button class="btn btn-outline btn-sm" style="color: var(--navy); border-color: var(--navy);" onclick="exportData('students')">
+            📥 Export CSV
+          </button>
+          <button class="btn btn-outline btn-sm" style="color: var(--navy); border-color: var(--navy);" onclick="fetchAdminData()">
+            🔄 Refresh
+          </button>
+          <button class="btn btn-sm" style="background:#fee2e2; color:#991b1b; border: 1px solid #fca5a5;" onclick="resetDatabase()">
+            ⚠️ Reset Defaults
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Search & Status Filter -->
+      <div class="filter-bar">
+        <input type="text" id="adminSearchInput" placeholder="Search by name, admission no, or class..." oninput="filterAdminStudents()">
+        <select id="adminStatusFilter" onchange="filterAdminStudents()">
+          <option value="all">All Students</option>
+          <option value="pending">With Pending Dues</option>
+          <option value="cleared">Dues Cleared</option>
+        </select>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="students-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Admission No</th>
+              <th>Student Name</th>
+              <th>Class</th>
+              <th>Parent / Phone</th>
+              <th>DOB (Login)</th>
+              <th>Monthly Fee</th>
+              <th>Pending Months</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminStudentsTbody">
+            <tr><td colspan="9" style="text-align: center; padding: 20px;">Loading student records...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Payment Transactions History Card -->
+    <div class="admin-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <h3 style="color: var(--navy); font-size: 18px;">Recent Fee Payments (Audit Ledger)</h3>
+          <p style="font-size: 12px; color: var(--text-muted);">Real-time record of all verified student fee payments</p>
+        </div>
+        <div>
+          <button class="btn btn-outline btn-sm" style="color: var(--navy); border-color: var(--navy);" onclick="exportData('payments')">
+            📥 Export Payments CSV
+          </button>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="students-table">
+          <thead>
+            <tr>
+              <th>Receipt ID</th>
+              <th>Admission No</th>
+              <th>Student Name</th>
+              <th>Months Paid</th>
+              <th>Total Amount</th>
+              <th>Payment Mode</th>
+              <th>Date & Time</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="adminPaymentsTbody">
+            <tr><td colspan="8" style="text-align: center; padding: 20px;">No payments recorded yet. Test a payment from the main page!</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add Student -->
+  <div class="modal-overlay" id="addStudentModal">
+    <div class="modal-content" style="max-width: 600px;">
+      <button class="modal-close" onclick="closeAddStudentModal()">✕</button>
+      <h3 style="color: var(--navy); margin-bottom: 6px;">Add New Student Record</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 18px;">
+        Enter student enrollment details to enable online fee payment.
+      </p>
+
+      <form onsubmit="submitNewStudent(event)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>Admission No (Addmo) *</label>
+            <input type="text" id="addAdm" placeholder="e.g. LIS2025013" required>
+          </div>
+          <div class="form-group">
+            <label>Student Full Name *</label>
+            <input type="text" id="addName" placeholder="e.g. Priyansh Rawat" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>Date of Birth *</label>
+            <input type="date" id="addDob" required>
+          </div>
+          <div class="form-group">
+            <label>Class *</label>
+            <input type="text" id="addClass" placeholder="e.g. IX" required>
+          </div>
+          <div class="form-group">
+            <label>Section *</label>
+            <input type="text" id="addSection" placeholder="e.g. A" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>Parent / Guardian *</label>
+            <input type="text" id="addParent" placeholder="e.g. Mohan Rawat" required>
+          </div>
+          <div class="form-group">
+            <label>Parent Phone *</label>
+            <input type="text" id="addPhone" placeholder="e.g. +91 98765 43222">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>Monthly Fee (INR) *</label>
+            <input type="number" id="addFee" placeholder="e.g. 5200" required>
+          </div>
+          <div class="form-group">
+            <label>Pending Months (comma separated)</label>
+            <input type="text" id="addPending" placeholder="November, December">
+          </div>
+        </div>
+
+        <button type="submit" id="btnAddStudentSubmit" class="btn full" style="margin-top: 10px;">
+          SAVE STUDENT RECORD
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Student -->
+  <div class="modal-overlay" id="editStudentModal">
+    <div class="modal-content" style="max-width: 600px;">
+      <button class="modal-close" onclick="closeEditStudentModal()">✕</button>
+      <h3 style="color: var(--navy); margin-bottom: 6px;">Edit Student Record</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 18px;">
+        Update fee rate, pending months, or contact details.
+      </p>
+
+      <form onsubmit="submitEditStudent(event)">
+        <input type="hidden" id="editAdmHidden">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>Admission No</label>
+            <input type="text" id="editAdm" disabled style="background:#e2e8f0;">
+          </div>
+          <div class="form-group">
+            <label>Student Full Name *</label>
+            <input type="text" id="editName" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>Date of Birth *</label>
+            <input type="text" id="editDob" placeholder="YYYY-MM-DD" required>
+          </div>
+          <div class="form-group">
+            <label>Class *</label>
+            <input type="text" id="editClass" required>
+          </div>
+          <div class="form-group">
+            <label>Section *</label>
+            <input type="text" id="editSection" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>Parent Name</label>
+            <input type="text" id="editParent">
+          </div>
+          <div class="form-group">
+            <label>Parent Phone</label>
+            <input type="text" id="editPhone">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>Monthly Fee (INR) *</label>
+            <input type="number" id="editFee" required>
+          </div>
+          <div class="form-group">
+            <label>Pending Months (comma separated)</label>
+            <input type="text" id="editPending">
+          </div>
+        </div>
+
+        <button type="submit" id="btnEditStudentSubmit" class="btn full" style="margin-top: 10px;">
+          UPDATE RECORD
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let allStudents = [];
+    let allPayments = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAdminAuth();
+    });
+
+    function checkAdminAuth() {
+      if (sessionStorage.getItem('lis_admin_auth') === 'true') {
+        document.getElementById('adminLockScreen').style.display = 'none';
+        document.getElementById('adminDashboardContent').style.display = 'block';
+        document.getElementById('btnAdminLogout').style.display = 'inline-flex';
+        fetchAdminData();
+      } else {
+        document.getElementById('adminLockScreen').style.display = 'block';
+        document.getElementById('adminDashboardContent').style.display = 'none';
+        document.getElementById('btnAdminLogout').style.display = 'none';
+      }
+    }
+
+    function verifyAdminPin(e) {
+      e.preventDefault();
+      const pin = document.getElementById('adminPinInput').value.trim();
+      if (pin === '1234' || pin === 'admin123') {
+        sessionStorage.setItem('lis_admin_auth', 'true');
+        checkAdminAuth();
+        showToast('Admin authenticated successfully!', 'success');
+      } else {
+        showToast('Invalid PIN. Please try again (Hint: 1234)', 'error');
+      }
+    }
+
+    function adminLogout() {
+      sessionStorage.removeItem('lis_admin_auth');
+      checkAdminAuth();
+      showToast('Logged out of Admin Portal.', 'info');
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<span style="font-weight:700;">${type === 'success' ? '✓' : '•'}</span><span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    async function fetchAdminData() {
+      await Promise.all([fetchStats(), fetchStudents(), fetchPayments()]);
+    }
+
+    async function fetchStats() {
+      try {
+        const res = await fetch('/api/admin/stats');
+        const stats = await res.json();
+        document.getElementById('kpiTotalStudents').textContent = stats.totalStudents;
+        document.getElementById('kpiTotalCollected').textContent = '₹' + stats.totalCollected.toLocaleString('en-IN');
+        document.getElementById('kpiPaymentsCountSub').textContent = `${stats.totalPaymentsCount} verified payments`;
+        document.getElementById('kpiTotalPending').textContent = '₹' + stats.totalPendingAmount.toLocaleString('en-IN');
+        document.getElementById('kpiPendingCountSub').textContent = `${stats.studentsWithPending} students with pending dues`;
+        document.getElementById('kpiCollectionRate').textContent = `${stats.collectionRate}%`;
+        document.getElementById('kpiClearedSub').textContent = `${stats.studentsDuesCleared} dues cleared`;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function fetchStudents() {
+      try {
+        const res = await fetch('/api/students');
+        allStudents = await res.json();
+        renderAdminStudents(allStudents);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderAdminStudents(students) {
+      const tbody = document.getElementById('adminStudentsTbody');
+      tbody.innerHTML = '';
+
+      if (!students || students.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 20px;">No students match criteria.</td></tr>';
+        return;
+      }
+
+      students.forEach((s, idx) => {
+        const hasPending = (s.pendingMonths && s.pendingMonths.length > 0);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${idx + 1}</td>
+          <td><strong>${s.admission}</strong></td>
+          <td>${s.name}</td>
+          <td>${s.className}-${s.section}</td>
+          <td>${s.parent} <br><small style="color:var(--text-muted);">${s.phone || ''}</small></td>
+          <td><code style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">${s.dob}</code></td>
+          <td>₹${s.fee.toLocaleString('en-IN')}</td>
+          <td>
+            ${hasPending ? `<span class="badge-pending">${s.pendingMonths.join(', ')}</span>` : `<span class="badge-clear">Dues Cleared</span>`}
+          </td>
+          <td>
+            <div style="display:flex; gap:6px;">
+              <button class="btn btn-navy btn-sm" onclick="payForStudent('${s.admission}', '${s.dob}')" title="Pay fees now">
+                Pay →
+              </button>
+              <button class="btn btn-outline btn-sm" style="color:var(--navy); border-color:var(--navy);" onclick="openEditStudentModal('${s.admission}')" title="Edit record">
+                ✏️
+              </button>
+              <button class="btn btn-sm" style="background:#fee2e2; color:#991b1b; border:1px solid #fca5a5;" onclick="deleteStudent('${s.admission}')" title="Delete record">
+                🗑️
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterAdminStudents() {
+      const q = document.getElementById('adminSearchInput').value.toLowerCase().trim();
+      const status = document.getElementById('adminStatusFilter').value;
+
+      const filtered = allStudents.filter(s => {
+        const matchesQuery = !q || s.name.toLowerCase().includes(q) || s.admission.toLowerCase().includes(q) || `${s.className}-${s.section}`.toLowerCase().includes(q);
+        const hasPending = (s.pendingMonths && s.pendingMonths.length > 0);
+
+        if (status === 'pending') return matchesQuery && hasPending;
+        if (status === 'cleared') return matchesQuery && !hasPending;
+        return matchesQuery;
+      });
+
+      renderAdminStudents(filtered);
+    }
+
+    async function fetchPayments() {
+      try {
+        const res = await fetch('/api/receipts-list');
+        allPayments = await res.json();
+        const tbody = document.getElementById('adminPaymentsTbody');
+        if (!allPayments || allPayments.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 20px;">No payments recorded yet. Test a payment from the main page!</td></tr>';
+          return;
+        }
+        tbody.innerHTML = allPayments.map(p => `
+          <tr>
+            <td><strong>${p.receiptId}</strong></td>
+            <td>${p.admission}</td>
+            <td>${p.studentName}</td>
+            <td>${(p.months || []).join(', ')}</td>
+            <td style="color:#16845c; font-weight:700;">₹${Number(p.totalAmount).toLocaleString('en-IN')}</td>
+            <td>${p.paymentMethod}</td>
+            <td>${new Date(p.timestamp).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' })}</td>
+            <td>
+              <button class="btn btn-navy btn-sm" onclick="viewReceiptFromAdmin('${p.receiptId}')">
+                View Receipt 🖨️
+              </button>
+            </td>
+          </tr>
+        `).join('');
+      } catch(e) {}
+    }
+
+    function payForStudent(adm, dob) {
+      sessionStorage.setItem('test_adm', adm);
+      sessionStorage.setItem('test_dob', dob);
+      window.location.href = '/#fees';
+    }
+
+    function viewReceiptFromAdmin(receiptId) {
+      window.location.href = `/?viewReceipt=${encodeURIComponent(receiptId)}#fees`;
+    }
+
+    function exportData(type) {
+      window.location.href = `/api/admin/export/${type}`;
+    }
+
+    // Modal Add Student
+    function openAddStudentModal() {
+      document.getElementById('addStudentModal').style.display = 'flex';
+    }
+    function closeAddStudentModal() {
+      document.getElementById('addStudentModal').style.display = 'none';
+    }
+
+    async function submitNewStudent(e) {
+      e.preventDefault();
+      const payload = {
+        admission: document.getElementById('addAdm').value.trim(),
+        name: document.getElementById('addName').value.trim(),
+        dob: document.getElementById('addDob').value,
+        className: document.getElementById('addClass').value.trim(),
+        section: document.getElementById('addSection').value.trim(),
+        parent: document.getElementById('addParent').value.trim(),
+        phone: document.getElementById('addPhone').value.trim(),
+        fee: document.getElementById('addFee').value,
+        pendingMonths: document.getElementById('addPending').value.split(',').map(m => m.trim()).filter(Boolean)
+      };
+
+      try {
+        const res = await fetch('/api/admin/students', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          showToast(data.error || 'Failed to add student', 'error');
+          return;
+        }
+        closeAddStudentModal();
+        showToast('Student added successfully!', 'success');
+        fetchAdminData();
+      } catch (err) {
+        showToast('Server error adding student.', 'error');
+      }
+    }
+
+    // Modal Edit Student
+    function openEditStudentModal(admission) {
+      const student = allStudents.find(s => s.admission === admission);
+      if (!student) return;
+
+      document.getElementById('editAdmHidden').value = student.admission;
+      document.getElementById('editAdm').value = student.admission;
+      document.getElementById('editName').value = student.name;
+      document.getElementById('editDob').value = student.dob;
+      document.getElementById('editClass').value = student.className;
+      document.getElementById('editSection').value = student.section;
+      document.getElementById('editParent').value = student.parent || '';
+      document.getElementById('editPhone').value = student.phone || '';
+      document.getElementById('editFee').value = student.fee;
+      document.getElementById('editPending').value = (student.pendingMonths || []).join(', ');
+
+      document.getElementById('editStudentModal').style.display = 'flex';
+    }
+
+    function closeEditStudentModal() {
+      document.getElementById('editStudentModal').style.display = 'none';
+    }
+
+    async function submitEditStudent(e) {
+      e.preventDefault();
+      const adm = document.getElementById('editAdmHidden').value;
+      const payload = {
+        name: document.getElementById('editName').value.trim(),
+        dob: document.getElementById('editDob').value.trim(),
+        className: document.getElementById('editClass').value.trim(),
+        section: document.getElementById('editSection').value.trim(),
+        parent: document.getElementById('editParent').value.trim(),
+        phone: document.getElementById('editPhone').value.trim(),
+        fee: document.getElementById('editFee').value,
+        pendingMonths: document.getElementById('editPending').value.split(',').map(m => m.trim()).filter(Boolean)
+      };
+
+      try {
+        const res = await fetch(`/api/admin/students/${encodeURIComponent(adm)}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          showToast(data.error || 'Failed to update student', 'error');
+          return;
+        }
+        closeEditStudentModal();
+        showToast('Student updated successfully!', 'success');
+        fetchAdminData();
+      } catch (err) {
+        showToast('Server error updating student.', 'error');
+      }
+    }
+
+    async function deleteStudent(admission) {
+      if (!confirm(`Are you sure you want to delete student ${admission}?`)) return;
+      try {
+        const res = await fetch(`/api/admin/students/${encodeURIComponent(admission)}`, {
+          method: 'DELETE'
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          showToast(data.error || 'Failed to delete student', 'error');
+          return;
+        }
+        showToast('Student deleted.', 'success');
+        fetchAdminData();
+      } catch (err) {
+        showToast('Server error deleting student.', 'error');
+      }
+    }
+
+    async function resetDatabase() {
+      if (!confirm('Are you sure you want to reset all 12 student records and clear payment test history?')) return;
+      try {
+        const res = await fetch('/api/admin/reset', { method: 'POST' });
+        const data = await res.json();
+        showToast(data.message || 'Database reset successfully!', 'success');
+        fetchAdminData();
+      } catch (err) {
+        showToast('Failed to reset database.', 'error');
+      }
+    }
+  </script>
+</body>
+</html>

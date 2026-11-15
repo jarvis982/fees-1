@@ -1,0 +1,49 @@
+[
+  {
+    "receiptId": "LIS-2026-423603",
+    "admission": "LIS2025001",
+    "studentName": "Aarav Sharma",
+    "className": "VI-A",
+    "parentName": "Rohan Sharma",
+    "phone": "+91 98765 43210",
+    "months": [
+      "November"
+    ],
+    "monthlyFee": 4500,
+    "feeBreakdown": {
+      "tuition": 3200,
+      "computerLab": 800,
+      "sportsActivity": 500
+    },
+    "totalAmount": 4500,
+    "paymentMethod": "UPI / BharatQR Scanner",
+    "reference": "TEST-REF-998877",
+    "screenshot": null,
+    "verificationQr": "data:image/png;base64,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",
+    "timestamp": "2026-11-15T14:33:28.446Z",
+    "status": "SUCCESS"
+  },
+  {
+    "receiptId": "LIS-2026-272789",
+    "admission": "LIS2025003",
+    "studentName": "Vivaan Joshi",
+    "className": "VIII-A",
+    "parentName": "Manish Joshi",
+    "phone": "+91 98765 43212",
+    "months": [
+      "December"
+    ],
+    "monthlyFee": 5200,
+    "feeBreakdown": {
+      "tuition": 3700,
+      "computerLab": 1000,
+      "sportsActivity": 500
+    },
+    "totalAmount": 5200,
+    "paymentMethod": "UPI / BharatQR Scanner",
+    "reference": "UPI-APP-9667350",
+    "screenshot": null,
+    "timestamp": "2026-11-15T13:34:27.388Z",
+    "status": "SUCCESS"
+  }
+]

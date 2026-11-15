@@ -1,0 +1,371 @@
+[
+  {
+    "admission": "LIS2025001",
+    "name": "Aarav Sharma",
+    "dob": "2013-04-15",
+    "gender": "Male",
+    "className": "VI",
+    "section": "A",
+    "parent": "Rohan Sharma",
+    "phone": "+91 98765 43210",
+    "email": "rohan.sharma@gmail.com",
+    "busRoute": "Route 3 - Bhowali to Bhimtal",
+    "fee": 4500,
+    "feeBreakdown": {
+      "tuition": 3200,
+      "computerLab": 800,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [
+      "December"
+    ],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November"
+    ]
+  },
+  {
+    "admission": "LIS2025002",
+    "name": "Ananya Verma",
+    "dob": "2012-08-22",
+    "gender": "Female",
+    "className": "VII",
+    "section": "B",
+    "parent": "Suresh Verma",
+    "phone": "+91 98765 43211",
+    "email": "suresh.verma@yahoo.com",
+    "busRoute": "Route 1 - Nainital Mall Road",
+    "fee": 4800,
+    "feeBreakdown": {
+      "tuition": 3400,
+      "computerLab": 900,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [
+      "October",
+      "November",
+      "December"
+    ],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September"
+    ]
+  },
+  {
+    "admission": "LIS2025003",
+    "name": "Vivaan Joshi",
+    "dob": "2011-01-10",
+    "gender": "Male",
+    "className": "VIII",
+    "section": "A",
+    "parent": "Manish Joshi",
+    "phone": "+91 98765 43212",
+    "email": "m.joshi@outlook.com",
+    "busRoute": "Self / Parent Drop",
+    "fee": 5200,
+    "feeBreakdown": {
+      "tuition": 3700,
+      "computerLab": 1000,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  {
+    "admission": "LIS2025004",
+    "name": "Diya Singh",
+    "dob": "2014-11-05",
+    "gender": "Female",
+    "className": "V",
+    "section": "C",
+    "parent": "Amit Singh",
+    "phone": "+91 98765 43213",
+    "email": "amit.singh@rediffmail.com",
+    "busRoute": "Route 2 - Sattal Chowk",
+    "fee": 4200,
+    "feeBreakdown": {
+      "tuition": 3000,
+      "computerLab": 700,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [
+      "November",
+      "December",
+      "January"
+    ],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October"
+    ]
+  },
+  {
+    "admission": "LIS2025005",
+    "name": "Advik Mehta",
+    "dob": "2010-06-18",
+    "gender": "Male",
+    "className": "IX",
+    "section": "A",
+    "parent": "Kunal Mehta",
+    "phone": "+91 98765 43214",
+    "email": "kunal.mehta@gmail.com",
+    "busRoute": "Route 4 - Haldwani Bypass",
+    "fee": 5600,
+    "feeBreakdown": {
+      "tuition": 4000,
+      "computerLab": 1100,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [
+      "September",
+      "October",
+      "November"
+    ],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August"
+    ]
+  },
+  {
+    "admission": "LIS2025006",
+    "name": "Myra Kapoor",
+    "dob": "2015-03-27",
+    "gender": "Female",
+    "className": "IV",
+    "section": "B",
+    "parent": "Nitin Kapoor",
+    "phone": "+91 98765 43215",
+    "email": "nitin.kapoor@gmail.com",
+    "busRoute": "Route 3 - Bhowali to Bhimtal",
+    "fee": 3900,
+    "feeBreakdown": {
+      "tuition": 2800,
+      "computerLab": 600,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [
+      "November",
+      "December"
+    ],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October"
+    ]
+  },
+  {
+    "admission": "LIS2025007",
+    "name": "Ishaan Gupta",
+    "dob": "2009-09-12",
+    "gender": "Male",
+    "className": "X",
+    "section": "A",
+    "parent": "Rahul Gupta",
+    "phone": "+91 98765 43216",
+    "email": "rahul.gupta@corp.in",
+    "busRoute": "Route 5 - Kathgodam Station Road",
+    "fee": 6000,
+    "feeBreakdown": {
+      "tuition": 4300,
+      "computerLab": 1200,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [
+      "November",
+      "December"
+    ],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October"
+    ]
+  },
+  {
+    "admission": "LIS2025008",
+    "name": "Sara Khan",
+    "dob": "2013-12-01",
+    "gender": "Female",
+    "className": "VI",
+    "section": "B",
+    "parent": "Imran Khan",
+    "phone": "+91 98765 43217",
+    "email": "imran.khan@gmail.com",
+    "busRoute": "Route 2 - Sattal Chowk",
+    "fee": 4500,
+    "feeBreakdown": {
+      "tuition": 3200,
+      "computerLab": 800,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [
+      "October",
+      "November"
+    ],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September"
+    ]
+  },
+  {
+    "admission": "LIS2025009",
+    "name": "Reyansh Das",
+    "dob": "2011-07-19",
+    "gender": "Male",
+    "className": "VIII",
+    "section": "C",
+    "parent": "Arun Das",
+    "phone": "+91 98765 43218",
+    "email": "arun.das@gmail.com",
+    "busRoute": "Route 1 - Nainital Mall Road",
+    "fee": 5200,
+    "feeBreakdown": {
+      "tuition": 3700,
+      "computerLab": 1000,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [
+      "November",
+      "December"
+    ],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October"
+    ]
+  },
+  {
+    "admission": "LIS2025010",
+    "name": "Aadhya Patel",
+    "dob": "2012-02-14",
+    "gender": "Female",
+    "className": "VII",
+    "section": "A",
+    "parent": "Jay Patel",
+    "phone": "+91 98765 43219",
+    "email": "jay.patel@outlook.com",
+    "busRoute": "Route 3 - Bhowali to Bhimtal",
+    "fee": 4800,
+    "feeBreakdown": {
+      "tuition": 3400,
+      "computerLab": 900,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [
+      "November"
+    ],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October"
+    ]
+  },
+  {
+    "admission": "LIS2025011",
+    "name": "Kabir Rawat",
+    "dob": "2008-10-30",
+    "gender": "Male",
+    "className": "XI",
+    "section": "A",
+    "parent": "Deepak Rawat",
+    "phone": "+91 98765 43220",
+    "email": "deepak.rawat@gov.in",
+    "busRoute": "Self / Parent Drop",
+    "fee": 6500,
+    "feeBreakdown": {
+      "tuition": 4700,
+      "computerLab": 1300,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [
+      "October",
+      "November",
+      "December"
+    ],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September"
+    ]
+  },
+  {
+    "admission": "LIS2025012",
+    "name": "Meera Thapa",
+    "dob": "2014-05-25",
+    "gender": "Female",
+    "className": "V",
+    "section": "A",
+    "parent": "Sanjay Thapa",
+    "phone": "+91 98765 43221",
+    "email": "sanjay.thapa@gmail.com",
+    "busRoute": "Route 2 - Sattal Chowk",
+    "fee": 4200,
+    "feeBreakdown": {
+      "tuition": 3000,
+      "computerLab": 700,
+      "sportsActivity": 500
+    },
+    "pendingMonths": [
+      "December"
+    ],
+    "paidMonths": [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November"
+    ]
+  }
+]
